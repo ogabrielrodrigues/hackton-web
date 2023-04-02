@@ -3,16 +3,16 @@ async function loginUser(e) {
 
     const id = e.target[0].value
 
-    const {data, status} = await axios.get(`http://localhost:3000/sugestion/user/${id}`)
+    const response = await axios.get(`http://localhost:3000/sugestion/user/${id}`)
 
-    console.log(status)
-
-    if (status == 400) {
-        alert('n foi!!')
+    if (response.data == "Erro") {
+        alert('erro ao se logar')
         return
-    } 
+    } else {
+        window.localStorage.setItem('minerva-user', JSON.stringify(response.data))
 
-    window.localStorage.setItem('minerva-user', JSON.parse(data))
+        window.location.href = '/home.html'
+    }
 }
 
 document.querySelector('form').addEventListener('submit', loginUser)

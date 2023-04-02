@@ -1,22 +1,18 @@
 const user = JSON.parse(window.localStorage.getItem('minerva-user'))
 
-function verifyUserType() {
+async function verifyUserType() {
     if (!!user.administrator) {
+        
         document.querySelector('#page').innerHTML = `<h1>Filtragem:</h1><br>
         <table>
             <th>País</th>
             <th>Estado</th>
             <th>Cidade</th>
             <th>Unidade</th>
-            <tr><td><select name="" id="">
-                <option value=""></option>
-                <option value="brasil">Brasil</option>
-                <option value="argentina">Argentina</option>
-                <option value="paraguai">Paraguai</option>
-            </select></td>
-            <td><select name="" id=""></select></td>
-            <td><select name="" id=""></select></td>
-            <td><select name="" id=""></select></td></tr>
+            <tr><td><select id="country"></select></td>
+            <td><select id="state"></select></td>
+            <td><select id="city"></select></td>
+            <td><select id="unit"></select></td></tr>
             
         </table>
 
@@ -26,6 +22,16 @@ function verifyUserType() {
                 
             </form>
         </div>`
+
+        const countries = await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/paises').then(res => res.data.map(coutry => coutry.nome))
+        countries.forEach(country => {
+            const opt = document.createElement('option')
+            opt.value = country
+            opt.innerText = country
+            
+            document.querySelector('#country').appendChild(opt)
+        })
+
     } else {
         document.querySelector('#page').innerHTML = `<h1>Seus feedbacks</h1>
         <div class="feedbacks"></div>
@@ -83,10 +89,3 @@ async function getSugestions() {
 }
 
 verifyUserType()
-
-// res.data.forEach(i => {
-//     const el = document.createElement('p')
-//     el.innerHTML = i.sugestion
-
-//     document.querySelector('.feedbacks').appendChild(el)
-// })
