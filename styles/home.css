@@ -122,10 +122,48 @@ textarea:focus {
 .user-sugestion {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    border-radius: .4rem;
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.1);
+}
+
+.user-sugestion {
+    margin-bottom: 1.6rem;
 }
 
 .user-info {
     display: flex;
+    min-width: 15rem;
     flex-direction: column;
+}
+
+.user-info .user-name {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.user-info .user-id {
+    font-weight: 500;
+}
+
+.user-text {
+    max-width: 45rem;
+    margin: 0 2rem;
+}
+
+.user-text span {
+    font-weight: 700;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.user-actions button {
+    padding: .8rem 1.2rem;
 }

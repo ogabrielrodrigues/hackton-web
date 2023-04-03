@@ -3,24 +3,51 @@ const user = JSON.parse(window.localStorage.getItem("minerva-user"));
 async function verifyUserType() {
   if (!!user.administrator) {
     const { data } = await axios.get(
-      "http://localhost:3000/sugestions/replies",
-      {
-        headers: {
-          Authorization: `Bearer ${user.id}`,
-        },
-      }
+      "http://localhost:3000/sugestions/replies"
     );
 
     document.querySelector("#selected-segestions").innerHTML = data
       .map(
-        (reply) => `<div style="display: flex;">
-      <h2>${reply.user.name} - ${reply.sugestion}</h2>
-      <p>${reply.reply}</p>
+        (reply) => `<div class="sugestion">
+      <h2>
+        <strong>${reply.user.name}</strong> - ${reply.sugestion}
+      </h2>
+      <p>
+        <span>Resposta:</span> ${reply.reply}
+      </p>
     </div>`
       )
       .join("");
   } else {
-    document.querySelector("#selected-segestions").innerHTML = ``;
+    const { data } = await axios.get(
+      "http://localhost:3000/sugestions/replies"
+    );
+
+    document.querySelector("#selected-segestions").innerHTML = data
+      .map(
+        (reply) => `<div class="sugestion">
+      <h2>
+        <strong>${reply.user.name}</strong> - ${reply.sugestion}
+      </h2>
+      <p>
+        <span>Resposta:</span> ${reply.reply}
+      </p>
+    </div>`
+      )
+      .join("");
+
+    document.querySelector("#selected-segestions").innerHTML = data
+      .map(
+        (reply) => `<div class="sugestion">
+      <h2>
+        <strong>${reply.user.name}</strong> - ${reply.sugestion}
+      </h2>
+      <p>
+        <span>Resposta:</span> ${reply.reply}
+      </p>
+    </div>`
+      )
+      .join("");
   }
 }
 

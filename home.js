@@ -31,20 +31,16 @@ async function verifyUserType() {
           },
         });
 
-        console.log(data);
-
-        // const units = data.map((sug) => sug.user.unit);
-
         const searchQuery = capitalizeFirstLetter(
           document.querySelector("#search").value
         );
 
-        const content = data
-          .filter(
-            (sug) =>
-              (sug.user.unit == searchQuery && sug.reply == "") ||
-              (sug.user.unit.includes(searchQuery) && sug.reply == "")
-          )
+        const pre_content = data.filter(
+          (sug) =>
+            (sug.user.unit == searchQuery && sug.reply == "") ||
+            (sug.user.unit.includes(searchQuery) && sug.reply == "")
+        )
+        const content = pre_content
           .map(
             (sug) =>
               `<div class="user-sugestion" id="${sug.id}">
@@ -52,44 +48,45 @@ async function verifyUserType() {
                 <span class="user-name">${sug.user.name}</span>
                 <p class="user-id">${sug.user.id}</p>
               </div>
-              <p class="user-text">Sugeriu: ${sug.sugestion}</p>
-              <input type="text" id="i-${sug.id}" />
-              <button id="btn-${sug.id}">Responder</button>
+              <p class="user-text">
+                <span>Sugeriu:</span>
+                ${sug.sugestion}
+              </p>
+              <div class="user-actions">
+                <input type="text" id="i-${sug.id}" />
+                <button id="btn-${sug.id}">Responder</button>
+              </div>
             </div>`
           );
 
-        document.querySelector("#sugestions").innerHTML = content;
+        document.querySelector("#sugestions").innerHTML = content.join('');
 
-        data
-          .filter((sug) => sug.reply == "")
-          .forEach((sug) => {
-            document
-              .querySelector(`#btn-${sug.id}`)
-              .addEventListener("click", async (e) => {
-                e.preventDefault();
+        console.log(pre_content)
 
-                const reply = document.querySelector(`#i-${sug.id}`).value;
+          pre_content.forEach((sug) => {
+            const el = document.querySelector(`#btn-${sug.id}`);
+            
+            el.addEventListener("click", async (e) => {
+              e.preventDefault();
 
-                const res = await axios.put(
-                  `http://localhost:3000/sugestion/${sug.id}`,
-                  { reply },
-                  {
-                    headers: {
-                      Authorization: `Bearer ${user.id}`,
-                    },
-                  }
-                );
-              });
-          });
+              const reply = document.querySelector(`#i-${sug.id}`).value;
+
+              const res = await axios.put(
+                `http://localhost:3000/sugestion/${sug.id}`,
+                { reply },
+                {
+                  headers: {
+                    Authorization: `Bearer ${user.id}`,
+                  },
+                }
+              );
+
+              if (res.status == 200) {
+                location.reload()
+              }
+            });
+        });
       });
-
-    // countries.forEach((country) => {
-    //   const opt = document.createElement("option");
-    //   opt.value = country;
-    //   opt.innerText = country;
-
-    //   document.querySelector("#country").appendChild(opt);
-    // });
   } else {
     document.querySelector("#page").innerHTML = `<h1 class="title">Suas sugestões</h1>
         <ul class="feedbacks"></ul>

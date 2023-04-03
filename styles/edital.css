@@ -1,0 +1,37 @@
+#page {
+    width: 100%;
+    height: calc(100vh - 9.9rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.sugestion {
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.1);
+    padding: 1rem 2rem;
+}
+
+.sugestion {
+    margin-bottom: 2rem;
+    border-radius: .4rem;
+}
+
+.sugestion h2 {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.sugestion h2 strong {
+    font-size: 2.2rem;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.sugestion p {
+    font-weight: 400;
+}
+
+.sugestion p span {
+    font-weight: 500;
+}
