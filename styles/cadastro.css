@@ -1,0 +1,31 @@
+.sign {
+    width: 100%;
+    height: calc(100vh - 9.9rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.sign-form label {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-top: .8rem;
+}
+
+.sign-form input {
+    margin: .5rem 0;
+}
+
+.help {
+    margin-top: 1rem;
+}
+
+.help a{
+    color: var(--primary);
+}

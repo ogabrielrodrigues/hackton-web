@@ -1,0 +1,131 @@
+#page {
+    width: 100%;
+    padding: 12rem 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+header {
+    position: fixed;
+}
+
+.user-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.user-form label {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+textarea {
+    width: 36.5rem;
+    height: 22rem;
+    padding: 0.8rem .8rem;
+    border-radius: .4rem;
+    border: 1px solid var(--gray);
+    outline: none;
+    transition: all ease-out 0.3s;
+    margin: .5rem 0;
+    resize: none;
+}
+
+textarea::placeholder {
+    font-size: 1.4rem;
+    color: var(--dark-gray);
+}
+
+textarea:focus {
+    font-size: 1.4rem;
+    color: var(--dark-gray);
+    border: 1px solid var(--primary);
+}
+
+.feedbacks {
+    max-width: 30rem;
+    max-height: 20rem;
+    padding-left: 1.2rem;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    visibility: hidden;
+}
+
+.sugestion {
+    list-style: decimal;
+    margin: 0 3rem;
+    margin-bottom: .5rem;
+    font-size: 1.6rem;
+}
+
+.sugestion::marker {
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.edital {
+    margin-bottom: 2rem;
+}
+
+.edital a{
+    color: var(--primary)
+}
+
+.empty {
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.filter {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.filter h5 {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.filter input {
+    margin: .5rem 0;
+}
+
+.adm-sugestions {
+    margin-top: 5rem;
+}
+
+.user-sugestion input, .user-sugestion button {
+    height: 3.5rem;
+    margin: 0 .3rem;
+}
+
+.adm-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#sugestions {
+    display: flex;
+    padding: 0 20rem;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.user-sugestion {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}

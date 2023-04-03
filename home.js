@@ -2,16 +2,15 @@ const user = JSON.parse(window.localStorage.getItem("minerva-user"));
 
 async function verifyUserType() {
   if (!!user.administrator) {
-    document.querySelector("#page").innerHTML = `<h1>Filtragem:</h1><br>
-        <table>
-            <h5>Unidade</h5>
+    document.querySelector("#page").innerHTML = `<h1 class="title">Filtragem:</h1><br>
+        <div class="filter">
+            <h5 class="">Unidade</h5>
             <input type="search" id="search"/><button id="search-btn">Procurar</button>
-            
-        </table>
+        </div>
 
-        <div class="">
-            <form>
-                <h1>Sugestões: </h1>
+        <div class="adm-sugestions">
+            <form class="adm-form">
+                <h1 class="title">Sugestões: </h1>
                 <div id="sugestions"></div>
             </form>
         </div>`;
@@ -48,9 +47,12 @@ async function verifyUserType() {
           )
           .map(
             (sug) =>
-              `<div id="${sug.id}" style="display: flex;">
-              <span>${sug.user.name}</span>
-              <p>Sugeriu: ${sug.sugestion}</p>
+              `<div class="user-sugestion" id="${sug.id}">
+              <div class="user-info">
+                <span class="user-name">${sug.user.name}</span>
+                <p class="user-id">${sug.user.id}</p>
+              </div>
+              <p class="user-text">Sugeriu: ${sug.sugestion}</p>
               <input type="text" id="i-${sug.id}" />
               <button id="btn-${sug.id}">Responder</button>
             </div>`
@@ -89,18 +91,20 @@ async function verifyUserType() {
     //   document.querySelector("#country").appendChild(opt);
     // });
   } else {
-    document.querySelector("#page").innerHTML = `<h1>Seus feedbacks</h1>
-        <div class="feedbacks"></div>
+    document.querySelector("#page").innerHTML = `<h1 class="title">Suas sugestões</h1>
+        <ul class="feedbacks"></ul>
 
         <br>
         <br>
+        
+        <p class="edital">Veja o <a href="edital.html">Edital</a> de feedbacks</p>
 
         <div class="">
-            <form>
-                <h1>Nova sugestão</h1>
-                <label for="">Sugestão:</label><br>
-                <textarea name="" id="" cols="30" rows="10"></textarea><br><br>
-                <button class="w3-btn" style="background-color: rgb(217, 228, 157);">Enviar Sugestão</button>
+            <form class="user-form">
+                <h1 class="title">Deixe sua sugestão</h1>
+                <label for="">Sugestão:</label>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <button>Enviar Sugestão</button>
             </form>
         </div>`;
 
@@ -136,11 +140,11 @@ async function getSugestions() {
 
   if (data.length >= 1) {
     document.querySelector(".feedbacks").innerHTML = data
-      .map((sg) => `<p>${sg.sugestion}</p>`)
+      .map((sg) => `<li class="sugestion">${sg.sugestion}</li>`)
       .join("");
   } else {
     document.querySelector(".feedbacks").innerHTML =
-      '<p class="w3-text-gray">Você ainda não possui feedbacks</p>';
+      '<p class="empty">Você ainda não possui feedbacks</p>';
   }
 }
 

@@ -1,0 +1,30 @@
+.login {
+    width: 100%;
+    height: calc(100vh - 9.9rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login-form label {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.login-form input {
+    margin: .5rem 0;
+}
+
+.login-form .help {
+    margin-top: 1rem;
+}
+
+.login-form .help a{
+    color: var(--primary);
+}
